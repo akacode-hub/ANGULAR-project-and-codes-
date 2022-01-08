@@ -1,0 +1,31 @@
+Textsript example
+
+*****Component.Html file:*****
+
+
+<h2>Angular welcomes you!!</h2>
+{{title}}
+<div>
+  The name is {{Name1}}<br>
+  The first topic is {{appList[0]|lowercase}}<br>
+  The second topic is {{appList[1]|lowercase}}<br>
+  The third topic is {{appList[2]|lowercase}}<br>
+</div>
+
+*****Component.ts file:****
+
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app1-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'Wow!! This is inetresting!';
+  Name1:string='Angular';
+  appList:string[]=["Binding","Display","Services"];
+}
+
+

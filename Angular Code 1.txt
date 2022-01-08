@@ -1,0 +1,20 @@
+Angular Code 1
+
+
+****component.html****
+
+
+
+<!doctype html>
+<html>
+<head>
+    <title>Angular Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+</head>
+<body ng-app>
+    Enter Your Name <input type="text" ng-model="name"><br>
+    Hi! Your Name is : {{name}}
+</body>
+</html>
+
+

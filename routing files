@@ -1,0 +1,146 @@
+div>
+
+  <router-outlet></router-outlet>
+
+</div>
+
+<div>
+
+  <ul class="nav navbar-nav">
+
+    <li>
+
+      <a routerLink="aboutUs">AboutUs</a>
+
+    </li>
+
+    <li>
+
+      <a routerLink="services">Services</a>
+
+    </li>
+
+  </ul>
+
+</div>
+
+
+
+
+
+
+ 
+
+ 
+
+import { BrowserModule } from '@angular/platform-browser';
+
+import { NgModule } from '@angular/core';
+
+ 
+
+import{routes} from './app.router';
+
+import { AppComponent } from './app.component';
+
+import { AboutUsComponent } from './aboutUs/about.component';
+
+import { ServicesComponent } from './services/services.component';
+
+import { HomeComponent } from './home/home.component';
+
+import { GalleryComponent } from './gallery/gallery.component';
+
+import { RegistrationComponent } from './registration/registration.component';
+
+import { ContactUsComponent } from './contact-us/contact-us.component';
+
+ 
+
+@NgModule({
+
+  declarations: [
+
+    AppComponent,
+
+    AboutUsComponent,
+
+    ServicesComponent,
+
+    HomeComponent,
+
+    GalleryComponent,
+
+    RegistrationComponent,
+
+    ContactUsComponent
+
+  ],
+
+  imports: [
+
+    BrowserModule,
+
+    routes
+
+  ],
+
+  providers: [],
+
+  bootstrap: [AppComponent]
+
+})
+
+export class AppModule { }
+
+ 
+
+ 
+
+ 
+
+import{ModuleWithProviders} from '@angular/core';
+
+import{Routes,RouterModule} from '@angular/router'; //module for implementing routing
+
+import{AppComponent} from './app.component';
+
+import{AboutComponent} from './about/about.component';
+
+import{ServicesComponent} from './services/services.component';
+
+import { HomeComponent } from './home/home.component';
+
+import { RegistrationComponent } from './registration/registration.component';
+
+import { GalleryComponent } from './gallery/gallery.component';
+
+import { ContactUsComponent } from './contact-us/contact-us.component';
+
+ 
+
+export const router:Routes=[
+
+    {path:"",redirectTo :'about',pathMatch:'full'},
+
+    {path:'home',component:HomeComponent},
+
+    {path:'about',component:AboutComponent},
+
+    {path:'services',component:ServicesComponent},
+
+    {path:'Registration',component:RegistrationComponent},
+
+    {path:'Gallery',component:GalleryComponent},
+
+    {path:'ContactUs',component:ContactUsComponent},
+
+ 
+
+   
+
+];
+
+ 
+
+export const routes:ModuleWithProviders=RouterModule.forRoot(router);

@@ -1,0 +1,79 @@
+myform component.html
+
+<p>myform works!</p>
+<form #f="ngForm" novalidate (ngSubmit)="save(f.value,f.valid)">
+    <!--we will place our fields here-->
+    <!--name-->
+    <div>
+        <label>Name</label>
+            <!--bind name to ngModel,its required length is 5-->
+            <input type="text" name="name"[(ngModel)]="user.name" #name="ngModel"required minlength="5">
+            <!--show error only when field is not valid and its dirty or form submitted-->
+            <small [hidden]="name.valid||(name.pristine && !f.submitted)">
+                Name is required(minimum 5 character).
+
+            </small>
+    </div>
+    <div ngModelGroup="address">
+        <!--street-->
+    <div>
+    <label>Street</label>
+    <input type="text" name="street"[(ngModel)]="user.address.street"#street="ngModel" required>
+    <small [hidden]="street.valid || (street.pristine && !f.submitted)"class="text-danger">
+        Street is required.
+    </small>
+</div>
+
+<!--postcode-->
+<div>
+    <label>Postcode</label>
+    <input type="text" name="postcode"[(ngModel)]="user.address.postcode">
+</div>   
+</div>
+<button type="submit">Submit</button>
+</form>
+Registration details:
+{{f.value|json}}
+******************************************************************************************
+myform component.ts
+
+import { Component, OnInit } from '@angular/core';
+import { User } from './user.interface';
+
+@Component({
+  selector: 'app-myform',
+  templateUrl: './myform.component.html',
+  styleUrls: ['./myform.component.css']
+})
+export class MyformComponent implements OnInit {
+
+  constructor() { }
+  public user:User; //our model
+
+  ngOnInit() { // we will initialize our form here
+    this.user={
+      name:"",
+      address:{
+        street:"",
+        postcode:'8000' //set defaulter value to 8000
+      }
+
+    };
+  }
+  save(model:User,isValid:boolean){
+    //check if model is valid 
+    //if valid call API to save the customer
+    console.log(model,isValid);
+
+  }
+
+}
+*******************************************************************************************
+export interface User{
+    name:String;
+    address:{
+        street:string;
+        postcode:string;
+    }
+}
+******************************************************************************************

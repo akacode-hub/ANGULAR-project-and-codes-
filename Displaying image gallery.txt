@@ -1,0 +1,37 @@
+Displaying image gallery using 'any' and url
+
+component.ts file:
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app1-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  appTitle:string = 'Display Image gallery';
+  appList:any[]=[
+    {
+      "ID":"1",
+      "url":'assets/Images/One.jpg'
+    },
+    {
+      "ID":"2",
+      "url":'assets/Images/Two.jpg'
+    }
+  ];
+  
+}
+
+
+component.html file:
+
+{{appTitle}}
+<div *ngFor="let lst of appList">
+  <ul>
+    <li>{{lst.ID}}</li>
+    <img [src]='lst.url'>
+  </ul>
+</div>
+
+

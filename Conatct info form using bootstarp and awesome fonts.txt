@@ -1,0 +1,65 @@
+Contact form using bootstarp and awesome fonts
+
+*****contact.component.ts file****
+
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-contact',
+  templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.css']
+})
+export class ContactComponent implements OnInit {
+  Name : string =  "Enter your name here";
+  Email : string =  "Enter your Email here";
+  place : string =  "Enter your location here";
+  
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+
+
+*****contact.component.css file****
+
+.center {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(161, 240, 250);
+    width: 500px;
+    align-items: center;
+    align-self: center;
+    border: darkblue 5px solid;
+    position: absolute;
+    top: 10%;
+    left: 30%;
+  }
+
+*****contact.component.html file****
+
+<div class="center">
+    
+    <br><br>
+    <ul class="fa-ul">
+    <li><h2>Instant Contact</h2><br></li>
+        <li><i class="fa fa-user-circle"></i> Name: <input type="text" [(ngModel)]="name" placeholder="{{Name}}"></li><br>
+        <li><i class="fa fa-envelope"></i> Email: <input type="text" [(ngModel)]="mail" placeholder="{{Email}}"></li><br>
+        <li><i class="fa fa-map-pin"></i> Location: <input type="text" [(ngModel)]="location" placeholder="{{place}}"></li>
+    
+    
+    <br>
+<h3>Your Details: </h3><br>
+<h4>Name: {{name}}</h4><br>
+<h4>Email: {{mail}}</h4><br>
+<h4>Location: {{location}}</h4><br>
+</ul>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,96 @@
+Component communication
+
+create an AppChild component:
+
+****app.module.ts***
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import {FormsModule} from "@angular/forms";
+import { AppComponent } from './app.component';
+import { AboutComponent } from './about/about.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { ContactComponent } from './contact/contact.component';
+import { MyFormComponent } from './my-form/my-form.component';
+import { RegisterComponent } from './register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UserReactComponent } from './user-react/user-react.component';
+import { AppChildComponent } from './app-child/app-child.component';
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    AboutComponent,
+    ContactComponent,
+    MyFormComponent,
+    RegisterComponent,
+    UserReactComponent,
+    AppChildComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AngularFontAwesomeModule,
+    ReactiveFormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+
+****app.component.ts****
+
+import { Component } from '@angular/core';
+import {AppChildComponent} from './app-child/app-child.component';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  //appTitle:string = 'Simple Calculator';
+  //maths=0;
+  //eng=0;
+  //hindi=0;
+
+  message:string="I am Parent";
+  childmessage:string="I am passed from Parent to Child component";
+}
+
+
+****app.component.html****
+
+<h1>Hello {{message}}</h1><br>
+<app-app-child [greetMessage]="childmessage"></app-app-child>
+
+
+
+*****app-child.component.html****
+
+<!--<p>app-child works!</p>-->
+<h2>Hi {{greetMessage}}</h2>
+
+
+****app-child.component.ts****
+
+import { Component,Input, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-app-child',
+  templateUrl: './app-child.component.html',
+  styleUrls: ['./app-child.component.css']
+})
+export class AppChildComponent implements OnInit {
+  @Input() greetMessage: string;
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+
+

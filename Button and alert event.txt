@@ -1,0 +1,25 @@
+Button and alert event
+
+component.ts file:
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app1-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  appTitle:string = 'Button and alert events';
+  showMeAlert()
+  {
+    alert("Show me the money");
+  }
+}
+
+
+component.html file:
+
+{{appTitle}}
+<br>
+<button (click)="showMeAlert()">Click me!</button>

@@ -1,0 +1,196 @@
+<p>Registration Form</p>
+
+<div class="container">
+
+<form #f="ngForm" novalidate (ngSubmit)="save(f.value,f.valid)">
+
+    <!--we will place our fields here-->
+
+    <!--name-->
+
+    <div class="form-group">
+
+        <label  class="control-label col-sm-2" for="Name">Name</label>
+
+            <!--bind name to ngModel,its required length is 5-->
+
+            <input type="text"  class="form-control" placeholder="Enter name-" name="name"[(ngModel)]="user.name" #name="ngModel"required minlength="5">
+
+            <!--show error only when field is not valid and its dirty or form submitted-->
+
+            <small [hidden]="name.valid||(name.pristine && !f.submitted)">
+
+                Name is required(minimum 5 character).
+
+ 
+
+            </small>
+
+    </div>
+
+
+ 
+
+            <div class="form-group">
+
+            <label class="control-label col-sm-2" for="email">Email:</label>
+
+            <div class="col-sm-10">
+
+                    <input type="email" name="email" ngModel [email]="true" class="form-control" placeholder="Enter email" [(ngModel)]="user.email"#email="ngModel" required >
+
+              <small [hidden]="email.valid || (street.pristine && !f.submitted)"class="text-danger">
+
+                    Email is required.
+
+              </small>
+
+            </div>
+
+            </div>
+
+           
+
+ 
+
+    <div ngModelGroup="address">
+
+        <!--street-->
+
+    
+
+        <div class="form-group">
+
+    <label  class="control-label col-sm-2" for="Street">Street</label>
+
+   
+
+    <input type="text"  class="form-control" name="street" placeholder="Enter address"[(ngModel)]="user.address.street"#street="ngModel" required>
+
+    <small [hidden]="street.valid || (street.pristine && !f.submitted)"class="text-danger">
+
+        Street is required.
+
+    </small>
+
+</div>
+
+ 
+
+<!--postcode-->
+
+<div class="form-group">
+
+    <label>Postcode</label>
+
+    <input type="text"  class="form-control" placeholder="Enter postcode" name="postcode"[(ngModel)]="user.address.postcode" required minlength="6">
+
+</div>  
+
+</div>
+
+ 
+
+<button type="submit"  class="form-control">Submit</button>
+
+</form>
+
+</div>
+
+Registration details:
+
+{{f.value|json}}
+
+ 
+
+ 
+
+ 
+
+ 
+
+export interface User{
+
+    name:String;
+
+    address:{
+
+        street:string;
+
+        postcode:string;
+
+    }
+
+    email:String;
+
+}
+
+ 
+
+ 
+
+import { Component, OnInit } from '@angular/core';
+
+import { User } from './user.interface';
+
+ 
+
+@Component({
+
+  selector: 'app-myform',
+
+  templateUrl: './myform.component.html',
+
+  styleUrls: ['./myform.component.css']
+
+})
+
+export class MyformComponent implements OnInit {
+
+ 
+
+  constructor() { }
+
+  public user:User; //our model
+
+ 
+
+  ngOnInit() { // we will initialize our form here
+
+    this.user={
+
+      name:"",
+
+      email:"",
+
+      address:{
+
+        street:"",
+
+        postcode:'8000' //set defaulter value to 8000
+
+      }
+
+   
+
+ 
+
+    };
+
+  }
+
+  save(model:User,isValid:boolean){
+
+    //check if model is valid
+
+    //if valid call API to save the customer
+
+    console.log(model,isValid);
+
+ 
+
+  }
+
+ 
+
+}

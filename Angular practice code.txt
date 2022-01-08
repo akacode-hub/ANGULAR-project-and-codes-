@@ -1,0 +1,39 @@
+Angular practice code
+
+1.	Use of ‘any’, ‘for’, ‘if’
+
+
+
+****Component.ts file:****
+
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app1-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'Use of any and For and if directives';
+  people:any[]=[
+    {
+      "name":"Puntya",
+      "age":35
+    },
+    {
+      "name":"Kulks",
+      "age":32
+    },
+    {
+      "name":"Akanksha",
+      "age":21
+    }
+  ];
+  
+}
+
+****Component.css file:****
+
+div{background-color: aquamarine}
+

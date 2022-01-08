@@ -1,0 +1,68 @@
+How to use angular material:
+
+First install angular material:
+npm install --save@angular/material @angular/cdk
+
+Then install animations
+
+npm install --save @angular/animations
+
+Then type:
+ng g m shared\material
+(this will create shared folder and material.module.ts file)
+
+
+****material.module.ts****
+
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+
+
+
+@NgModule({
+  declarations: [],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatCheckboxModule
+  ],
+  exports:[
+    MatButtonModule,
+    MatCheckboxModule
+  ]
+})
+export class MaterialModule { }
+
+
+****app.module.ts****
+
+import {MaterialModule} from './shared/material/material.module'
+
+imports: [
+    BrowserModule,
+    FormsModule,
+    AngularFontAwesomeModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MaterialModule
+
+
+****style.css****
+
+@import'~@angular/material/prebuilt-themes/indigo-pink.css'
+
+
+****app.component.html****
+
+<button mat-button>Click Here!</button>
+<br>
+<mat-checkbox>Check Me!</mat-checkbox>
+
+<!--<mat-radio-group>
+  <mat-radio-button value="1">Option 1</mat-radio-button>
+  <mat-radio-button value="2">Option 2</mat-radio-button>
+</mat-radio-group>-->
+
+
+****For more information refer the official website of material.angular.io****

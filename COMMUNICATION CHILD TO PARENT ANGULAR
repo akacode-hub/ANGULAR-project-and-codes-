@@ -1,0 +1,122 @@
+
+AkankshaAnupam.Agnihotri@cognizant.com
+Mon, Nov 4, 2019, 9:40 PM
+to me
+
+CHILD COMPONENT HTML
+
+<h3>Child Component</h3>
+
+ 
+
+<label>Child Component  </label>
+
+<input type="text" #ccomponent (keyup)="onChange(ccomponent.value)"/>
+
+ 
+
+<p>Value of parent component is:{{PData}}</p>
+
+ 
+
+COMPONENT TS
+
+import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
+
+ 
+
+@Component({
+
+  selector: 'app-child',
+
+  templateUrl: './child.component.html',
+
+  styleUrls: ['./child.component.css']
+
+})
+
+export class ChildComponent implements OnInit {
+
+ 
+
+  @Input() PData:number;
+
+  @Output() childEvent= new EventEmitter();
+
+  constructor() { }
+
+  onChange(value){
+
+  this.childEvent.emit(value);
+
+  }
+
+ 
+
+  ngOnInit() {
+
+  }
+
+ 
+
+}
+
+ 
+
+ 
+
+ 
+
+PARENT COMPONENT HTML
+
+<h3>Parent Component</h3>
+
+<label>Parent Component </label>
+
+<input type="text" #pcomponent (keyup)="0">
+
+ 
+
+<p>Value of child component is: {{CData}}</p>
+
+<app-child [PData]="pcomponent.value"
+
+(childEvent)="CData=$event"></app-child>
+
+ 
+
+ 
+
+COMPONENT TS
+
+import { Component, OnInit } from '@angular/core';
+
+ 
+
+@Component({
+
+  selector: 'app-parent',
+
+  templateUrl: './parent.component.html',
+
+  styleUrls: ['./parent.component.css']
+
+})
+
+export class ParentComponent implements OnInit {
+
+  public CData:number;
+
+ 
+
+  constructor() { }
+
+ 
+
+  ngOnInit() {
+
+  }
+
+ 
+
+}

@@ -1,0 +1,96 @@
+Sample Template driven form
+
+Creating a new component myForm.
+Add new file user.interface.ts
+
+****user.interface.ts****
+
+export interface User{
+    name:string;
+    mail:string;
+    address:{
+        street:string;
+        postcode:string;
+    }
+}
+
+
+****my-form.component.ts****
+
+import { Component, OnInit } from '@angular/core';
+import { User } from './user.interface';
+
+@Component({
+  selector: 'app-my-form',
+  templateUrl: './my-form.component.html',
+  styleUrls: ['./my-form.component.css']
+})
+export class MyFormComponent implements OnInit {
+
+  constructor() { }
+  public user:User
+  ngOnInit() {
+    this.user={
+      name:"",
+      mail:"",
+      address:{
+        street:"",
+        postcode:'8000'
+      }
+    };
+  }
+  save(model:User, isValid:boolean){
+    console.log(model,isValid);
+  }
+
+}
+
+
+****my-form.component.html****
+
+<div class="container">
+<h2>Registration Form</h2>
+<br>
+<form #f="ngForm" novalidate (ngSubmit)="save(f.value,f.valid)">
+    <!--we will place our fields here-->
+    <!--name-->
+    <div class="form-group">
+        <label>Name</label>
+        <!--bind name to ngModel, its required with minimum 5 characters-->
+        <input type="text"  class="form-control" name="name" [(ngModel)]="user.name" #name="ngModel" required minlength="5">
+        <!--Show erroe only when field is not valid & its dirty or form submitted-->
+        <small [hidden]="name.valid || (name.pristine && !f.submitted)">
+        Name is required (minimum 5 characters).
+        </small>
+    </div>
+    <div class="form-group">
+            <label>Email</label>
+            
+            <input type="text" ngModel [email]="true" class="form-control" name="mail" [(ngModel)]="user.mail" #mail="ngModel" required>
+            
+            <small [hidden]="mail.valid || (mail.pristine && !f.submitted)" class="text-danger">
+            Email is required (Please use proper format i.e. xyz@site.com).
+            </small>
+        </div>
+
+    <div ngModelGroup="address">
+        <!--street-->
+        <div class="form-group">
+            <label>Street </label>
+            <input type="text" class="form-control" name="street" [(ngModel)]="user.address.street" #street="ngModel" required>
+            <small [hidden]="street.valid || (street.pristine && !f.submitted)" class="text-danger">
+                Street is required.
+            </small>
+        </div>
+        <!--postcode-->
+        <div class="form-group">
+            <label>Post Code </label>
+            <input type="text" class="form-control" name="postcode" [(ngModel)]="user.address.postcode">
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary">Submit</button>
+    <br><br>
+    Registration Details:
+    {{f.value|json}}
+</form>
+</div>

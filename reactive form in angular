@@ -1,0 +1,299 @@
+Component.html file
+
+ 
+
+ 
+
+<div class="container">
+
+    <br>
+
+    <br>
+
+    <h1>
+
+        Welcome to {{title}}!!
+
+    </h1>
+
+    <br>
+
+    <br>
+
+    <form [formGroup]="angForm" novalidate>
+
+        <div class="form-group">
+
+            <i class="fa fa-user-plus" style="font-size:24px"></i> <label>Name</label>
+
+            <input class="form-control" formControlName="name" type="text">
+
+        </div>
+
+        <div *ngIf="angForm.controls['name'].invalid && (angForm.controls['name'].dirty || angForm.controls['name'].touched)"class="alert alert-danger">
+
+            <div *ngIf="angForm.controls['name'].errors.required">
+
+                Name is required.</div>
+
+            </div>
+
+            <br>
+
+            <br>
+
+ 
+
+            <div class="form-group">
+
+                <i class="fa fa-envelope-open" style="font-size:24px"></i> <label>Email</label>
+
+                <input class="form-control"formControlName="email"type="text">
+
+            </div>
+
+            <div *ngIf="angForm.controls['email'].invalid && (angForm.controls['email'].dirty || angForm.controls['email'].touched)"class="alert alert-danger">
+
+                <div *ngIf="angForm.controls['email'].errors.required">Email is Required</div>
+
+            </div>
+
+            <br>
+
+            <br>
+
+ 
+
+            <div class="form-group">
+
+                <i class="fa fa-address-card" style="font-size:24px"></i><label>Address</label>
+
+                <input class="form-control"formControlName="address"type="text">
+
+            </div>
+
+            <div *ngIf="angForm.controls['address'].invalid && (angForm.controls['address'].dirty || angForm.controls['address'].touched)"class="alert alert-danger">
+
+                <div *ngIf="angForm.controls['address'].errors.required">Address is Required</div>
+
+            </div>
+
+            <br>
+
+            <br>
+
+           
+
+            <button type="submit"
+
+            [disabled]="angForm.pristine||angForm.invalid" class="btn btn-success">Submit</button>
+
+ 
+
+</form>
+
+</div>
+
+ 
+
+ 
+
+Component.ts file
+
+ 
+
+import { Component, OnInit } from '@angular/core';
+
+import{ FormGroup, FormBuilder, Validators}from'@angular/forms';
+
+ 
+
+@Component({
+
+  selector: 'app-reactive-forms-module',
+
+  templateUrl: './reactive-forms-module.component.html',
+
+  styleUrls: ['./reactive-forms-module.component.css']
+
+})
+
+export class ReactiveFormsModuleComponent implements OnInit {
+
+  title='Angular Form Validator';
+
+  angForm:FormGroup;
+
+  constructor(private fb:FormBuilder){
+
+    this.createForm();
+
+  }
+
+ 
+
+  createForm()
+
+  {
+
+    this.angForm=this.fb.group({
+
+      name:["",Validators.required],
+
+      address:["",Validators.required],
+
+      email:["",Validators.required ]
+
+    });
+
+  }
+
+ 
+
+  ngOnInit() {
+
+  }
+
+ 
+
+}
+
+ 
+
+ 
+
+ 
+
+App.module.ts
+
+ 
+
+import { BrowserModule } from '@angular/platform-browser';
+
+import { NgModule } from '@angular/core';
+
+import {FormsModule} from "@angular/forms";
+
+ 
+
+import { AppComponent } from './app.component';
+
+import { AboutComponent } from './about/about.component';
+
+import { ContractComponent } from './contract/contract.component';
+
+import { MyformComponent } from './myform/myform.component';
+
+import { RegisterformComponent } from './registerform/registerform.component';
+
+import { ReactiveFormsModuleComponent } from './reactive-forms-module/reactive-forms-module.component';
+
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { AngularFontAwesomeModule} from 'angular-font-awesome';
+
+ 
+
+@NgModule({
+
+  declarations: [
+
+    AppComponent,
+
+    AboutComponent,
+
+    ContractComponent,
+
+    MyformComponent,
+
+    RegisterformComponent,
+
+    ReactiveFormsModuleComponent
+
+  ],
+
+  imports: [
+
+    BrowserModule,
+
+    FormsModule,
+
+    ReactiveFormsModule,
+
+    AngularFontAwesomeModule
+
+ 
+
+  ],
+
+  providers: [],
+
+  bootstrap: [AppComponent]
+
+})
+
+export class AppModule { }
+
+ 
+
+ 
+
+ 
+
+import { Component, OnInit } from '@angular/core';
+
+import{ FormGroup, FormBuilder, Validators}from'@angular/forms';
+
+ 
+
+@Component({
+
+  selector: 'app-reactive-forms-module',
+
+  templateUrl: './reactive-forms-module.component.html',
+
+  styleUrls: ['./reactive-forms-module.component.css']
+
+})
+
+export class ReactiveFormsModuleComponent implements OnInit {
+
+  title='Angular Form Validator';
+
+  angForm:FormGroup;
+
+  constructor(private fb:FormBuilder){
+
+    this.createForm();
+
+  }
+
+ 
+
+  createForm()
+
+  {
+
+    this.angForm=this.fb.group({
+
+      name:["",Validators.required],
+
+      address:["",Validators.required],
+
+      email:["", [Validators.required,Validators.email]]
+
+    });
+
+  }
+
+ 
+
+  ngOnInit() {
+
+  }
+
+ 
+
+}
+
+ 

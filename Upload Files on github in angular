@@ -1,0 +1,291 @@
+1)First build project on terminal using ng build –prod
+
+This makes the folder in named DIST in project file . if red occurs means files are not tracked and errors are there in the file . solve them and u will get a folder DIST
+
+ 
+
+ 
+
+2)Then copy the dist folder on the d drive
+
+3)Then open the git cmd
+
+4)The type the below commands
+
+ 
+
+C:\Users\*****>D:
+
+ 
+
+D:\>spaprojectroute
+
+'spaprojectroute' is not recognized as an internal or external command,
+
+operable program or batch file.
+
+ 
+
+D:\>cd spaprojectroute
+
+ 
+
+D:\spaprojectroute>git init
+
+Initialized empty Git repository in D:/spaprojectroute/.git/
+
+ 
+
+D:\spaprojectroute>git remote add origin https://code.cognizant.com/806878/angular-project.git
+
+ 
+
+D:\spaprojectroute>git add .
+
+warning: LF will be replaced by CRLF in 3rdpartylicenses.txt.
+
+The file will have its original line endings in your working directory.
+
+warning: LF will be replaced by CRLF in index.html.
+
+The file will have its original line endings in your working directory.
+
+ 
+
+D:\spaprojectroute>git add .
+
+ 
+
+D:\spaprojectroute>git status
+
+On branch master
+
+ 
+
+No commits yet
+
+ 
+
+Changes to be committed:
+
+  (use "git rm --cached <file>..." to unstage)
+
+ 
+
+        new file:   3rdpartylicenses.txt
+
+        new file:   assets/images/12345.jpg
+
+        new file:   assets/images/77054.jpg
+
+        new file:   assets/images/Capture.PNG
+
+        new file:   assets/images/hqdefault.jpg
+
+        new file:   assets/images/image2.png
+
+        new file:   assets/images/image9.jpg
+
+        new file:   assets/images/qsdd.jpg
+
+        new file:   assets/images/snip2.PNG
+
+        new file:   assets/images/snip3.PNG
+
+        new file:   assets/images/snip4.PNG
+
+        new file:   assets/images/virtual-classroom.jpg
+
+        new file:   favicon.ico
+
+        new file:   index.html
+
+        new file:   main-es2015.a4ba12e78417cd326024.js
+
+        new file:   main-es5.a4ba12e78417cd326024.js
+
+        new file:   polyfills-es2015.0ef207fb7b4761464817.js
+
+        new file:   polyfills-es5.2b9ce34c123ac007a8ba.js
+
+        new file:   runtime-es2015.e8a2810b3b08d6a1b6aa.js
+
+        new file:   runtime-es5.e8a2810b3b08d6a1b6aa.js
+
+        new file:   styles.52d95800b9c6ec5efa61.css
+
+ 
+
+ 
+
+D:\spaprojectroute>git commit -m "Initial commit"
+
+[master (root-commit) 84a2211] Initial commit
+
+Committer: Agnihotri <*****@cognizant.com>
+
+Your name and email address were configured automatically based
+
+on your username and hostname. Please check that they are accurate.
+
+You can suppress this message by setting them explicitly. Run the
+
+following command and follow the instructions in your editor to edit
+
+your configuration file:
+
+ 
+
+    git config --global --edit
+
+ 
+
+After doing this, you may fix the identity used for this commit with:
+
+ 
+
+    git commit --amend --reset-author
+
+ 
+
+21 files changed, 338 insertions(+)
+
+create mode 100644 3rdpartylicenses.txt
+
+create mode 100644 assets/images/12345.jpg
+
+create mode 100644 assets/images/77054.jpg
+
+create mode 100644 assets/images/Capture.PNG
+
+create mode 100644 assets/images/hqdefault.jpg
+
+create mode 100644 assets/images/image2.png
+
+create mode 100644 assets/images/image9.jpg
+
+create mode 100644 assets/images/qsdd.jpg
+
+create mode 100644 assets/images/snip2.PNG
+
+create mode 100644 assets/images/snip3.PNG
+
+create mode 100644 assets/images/snip4.PNG
+
+create mode 100644 assets/images/virtual-classroom.jpg
+
+create mode 100644 favicon.ico
+
+create mode 100644 index.html
+
+create mode 100644 main-es2015.a4ba12e78417cd326024.js
+
+create mode 100644 main-es5.a4ba12e78417cd326024.js
+
+create mode 100644 polyfills-es2015.0ef207fb7b4761464817.js
+
+create mode 100644 polyfills-es5.2b9ce34c123ac007a8ba.js
+
+create mode 100644 runtime-es2015.e8a2810b3b08d6a1b6aa.js
+
+create mode 100644 runtime-es5.e8a2810b3b08d6a1b6aa.js
+
+create mode 100644 styles.52d95800b9c6ec5efa61.css
+
+ 
+
+D:\spaprojectroute>git push -u origin master
+
+fatal: unable to access 'https://code.cognizant.com/****/angular-project.git/': SSL certificate problem: unable to get local issuer certificate
+
+ 
+
+D:\spaprojectroute>git commit -m "First commit"
+
+On branch master
+
+nothing to commit, working tree clean
+
+ 
+
+D:\spaprojectroute>git push -u origin master
+
+fatal: unable to access 'https://code.cognizant.com/****/angular-project.git/': SSL certificate problem: unable to get local issuer certificate
+
+ 
+
+D:\spaprojectroute>
+
+ 
+
+D:\spaprojectroute>
+
+ 
+
+D:\spaprojectroute>git config --global http.sslVerify false
+
+ 
+
+D:\spaprojectroute>git push -u origin master
+
+Username for 'https://code.cognizant.com': 
+
+Password for 'https://******@code.cognizant.com':
+
+remote: HTTP Basic: Access denied
+
+
+
+ 
+
+D:\spaprojectroute>git config --global user.name "Akanksha Anupam Agnihotri"
+
+ 
+
+D:\spaprojectroute>git config --global user.email "akankshaanupam.agnihotri@cognizant.com"
+
+ 
+
+D:\spaprojectroute>git push -u origin master
+
+Username for 'https://code.cognizant.com': 806878
+
+Password for 'https://8****@code.cognizant.com':
+
+Counting objects: 24, done.
+
+Delta compression using up to 4 threads.
+
+Compressing objects: 100% (22/22), done.
+
+Writing objects: 100% (24/24), 1.35 MiB | 1.03 MiB/s, done.
+
+Total 24 (delta 0), reused 0 (delta 0)
+
+remote:
+
+remote: ========================================================================
+
+remote:
+
+remote:               DO NOT PUSH LARGE FILES TO EXISTING PROJECTS
+
+remote:
+
+remote: ========================================================================
+
+To https://githubid
+
+* [new branch]      master -> master
+
+Branch master set up to track remote branch master from origin.
+
+ 
+
+D:\spaprojectroute>
+
+ 
+
+ 
+
+5) you will be able to see this folder on your github with your files there. You won’t be able to see the output as the source code remains with us but the code files will be visible .

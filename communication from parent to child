@@ -1,0 +1,183 @@
+App-component html
+
+ 
+
+ 
+
+<!--<app-contract></app-contract>-->
+
+<!--<app-myform></app-myform>-->
+
+<!--<app-registerform></app-registerform>-->
+
+<!--<app-reactive-forms-module></app-reactive-forms-module>-->
+
+<h1>Hello {{message}}</h1><br>
+
+<app-appchild [greetMessage]="childmessage"></app-appchild>
+
+ 
+
+     
+
+ 
+
+App component ts
+
+import { Component } from '@angular/core';
+
+import{AppchildComponent} from './appchild/appchild.component';
+
+ 
+
+@Component({
+
+  selector: 'app1-root',
+
+  templateUrl: './app.component.html',
+
+  styleUrls: ['./app.component.css']
+
+ 
+
+})
+
+export class AppComponent{
+
+  message:string="I am Parent";
+
+  childmessage:string="i am passed from parent to child component"
+
+}
+
+ 
+
+ 
+
+ 
+
+ 
+
+Create new component call appchild
+
+ 
+
+Appchild component ts
+
+import { Component,Input, OnInit,  } from '@angular/core';
+
+ 
+
+@Component({
+
+  selector: 'app-appchild',
+
+  templateUrl: './appchild.component.html',
+
+  styleUrls: ['./appchild.component.css']
+
+})
+
+export class AppchildComponent implements OnInit {
+
+  @Input() greetMessage:string;
+
+ 
+
+  constructor() { }
+
+ 
+
+  ngOnInit() {
+
+  }
+
+ 
+
+}
+
+ 
+
+ 
+
+Appchild component html
+
+<h2> Hi {{greetMessage}}</h2>
+
+ 
+
+ 
+
+App module ts
+
+import { BrowserModule } from '@angular/platform-browser';
+
+import { NgModule } from '@angular/core';
+
+import {FormsModule} from "@angular/forms";
+
+ 
+
+import { AppComponent } from './app.component';
+
+import { AboutComponent } from './about/about.component';
+
+import { ContractComponent } from './contract/contract.component';
+
+import { MyformComponent } from './myform/myform.component';
+
+import { RegisterformComponent } from './registerform/registerform.component';
+
+import { ReactiveFormsModuleComponent } from './reactive-forms-module/reactive-forms-module.component';
+
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { AngularFontAwesomeModule} from 'angular-font-awesome';
+
+import { AppchildComponent } from './appchild/appchild.component';
+
+ 
+
+@NgModule({
+
+  declarations: [
+
+    AppComponent,
+
+    AboutComponent,
+
+    ContractComponent,
+
+    MyformComponent,
+
+    RegisterformComponent,
+
+    ReactiveFormsModuleComponent,
+
+    AppchildComponent
+
+  ],
+
+  imports: [
+
+    BrowserModule,
+
+    FormsModule,
+
+    ReactiveFormsModule,
+
+    AngularFontAwesomeModule
+
+ 
+
+  ],
+
+  providers: [],
+
+  bootstrap: [AppComponent]
+
+})
+
+export class AppModule { }
+
+ 

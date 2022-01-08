@@ -1,0 +1,74 @@
+Services
+
+Create a service by writing this command:  ng g service crypto
+
+****crypto.service.ts****
+
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CryptoService {
+  coins=[
+    {id:1, name:'BTC'},
+    {id:2, name:'XRP'}
+  ];
+
+  constructor() { }
+
+  getMyItems()
+  {
+    return this.coins;
+  }
+}
+
+
+****app.module.ts****
+
+import {CryptoService} from './crypto.service';
+
+****app.component.ts****
+
+import { Component } from '@angular/core';
+import {AppChildComponent} from './app-child/app-child.component';
+import {CryptoService} from './crypto.service';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  //appTitle:string = 'Simple Calculator';
+  //maths=0;
+  //eng=0;
+  //hindi=0;
+ // message:string="I am Parent";
+  //childmessage:string="I am passed from Parent to Child component";
+
+  coins=[];
+  constructor(private cryptoservice:CryptoService)
+  {
+    this.coins=cryptoservice.getMyItems();
+  }
+}
+
+
+****app.component.html****
+
+
+<table class="table table-sm">
+  <thead class="thead-dark">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+  </tr>
+  </thead>
+  <tr *ngFor="let coin of coins">
+    <td>{{coin.id}}</td>
+    <td>{{coin.name}}</td>
+  </tr>
+</table>
+
+

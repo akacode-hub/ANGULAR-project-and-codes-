@@ -1,0 +1,47 @@
+Displaying data using switch case
+
+component.ts file:
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app1-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  appTitle:string = 'Display Data using Switch Case';
+  people:any[]=[
+    {
+      "name":"Akanksha",
+      "age":35,
+      "country":'MARS'
+    },
+    {
+      "name":"Rucha",
+      "age":32,
+      "country":'USA'
+    },
+    {
+      "name":"Anushree",
+      "age":32,
+      "country":'USA'
+    },
+  ]; 
+}
+
+
+Component.html file:
+
+{{appTitle}}
+<ul *ngFor="let person of people"
+[ngSwitch]="person.country">
+<li *ngSwitchCase="UK">{{person.name}} ({{person.country}})
+</li>
+<li *ngSwitchCase="USA">{{person.name}} ({{person.country}})
+</li>
+<li *ngSwitchCase="HK">{{person.name}} ({{person.country}})
+</li>
+<li *ngSwitchDefault>{{person.name}} ({{person.country}})
+</li>
+</ul>

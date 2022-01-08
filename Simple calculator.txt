@@ -1,0 +1,37 @@
+Simple calculator
+
+component.html file:
+
+{{appTitle}}
+<div>
+  <label>Maths:</label>
+  <input type="number" [(ngModel)]="maths"><br>
+  <label>English:</label>
+  <input type="number" [(ngModel)]="eng"><br>
+  <label>Hindi:</label>
+  <input type="number" [(ngModel)]="hindi"><br>
+  Total: {{maths+eng+hindi}}<br>
+  Average Marks: {{(maths+eng+hindi)/3}}<br>
+  Maximum Marks:
+  <ul *ngIf="(maths>eng) && (maths>hindi)">{{maths}}</ul>
+  <ul *ngIf="(eng>maths) && (eng>hindi)">{{eng}}</ul>
+  <ul *ngIf="(hindi>eng) && (hindi>maths)">{{hindi}}</ul>
+</div>
+
+
+
+component.ts file:
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app1-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  appTitle:string = 'Simple Calculator';
+  maths=0;
+  eng=0;
+  hindi=0;
+}

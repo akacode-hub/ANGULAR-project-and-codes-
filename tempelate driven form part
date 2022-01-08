@@ -1,0 +1,199 @@
+<div class="container">
+
+    <h2>Registration Form</h2>
+
+    <br>
+
+    <form #f="ngForm" novalidate (ngSubmit)="save(f.value,f.valid)">
+
+        <div class="form-group">
+
+                <i class="fa fa-address-book-o" style="font-size:24px"></i><label>Name</label>
+
+                <input type="text"  class="form-control" name="name" [(ngModel)]="user.name" #name="ngModel" required placeholder="Enter your name" required minlength="5">
+
+               
+
+                <small [hidden]="mail.valid || (mail.pristine && !f.submitted)" class="text-danger">
+
+                Name is required (minimum 5 characters).
+
+                </small>
+
+            </div>
+
+       
+
+        <div class="form-group">
+
+                <i class="fa fa-envelope-open" style="font-size:24px"></i> <label>Email</label>
+
+               
+
+                <input type="text" ngModel [email]="true" class="form-control" name="mail" [(ngModel)]="user.mail" #mail="ngModel" required placeholder="Enter your email">
+
+               
+
+                <small [hidden]="mail.valid || (mail.pristine && !f.submitted)" class="text-danger">
+
+                Email is required (Please use proper format i.e. xyz@site.com).
+
+                </small>
+
+            </div>
+
+            <div class="form-group">
+
+                    <i class="fa fa-genderless" style="font-size:24px"></i> <label>Gender</label>
+
+                <br>
+
+                    <label class="radio-inline">
+
+                            <i class="fa fa-mars" style="font-size:24px"></i> <input type="radio" name="optradio" name="gender" [(ngModel)]="user.gender" #name="ngModel" value="Male" checked>Male
+
+                    </label>
+
+                    <br>
+
+                    <label class="radio-inline">
+
+                            <i class="fa fa-venus" style="font-size:24px"></i> <input type="radio" name="optradio" name="gender" [(ngModel)]="user.gender" #name="ngModel" value="Female" checked>Female
+
+                    </label>
+
+              </div>
+
+              <div class="form-group">
+
+                    <i class="fa fa-tags" style="font-size:24px"></i> <label for="sel1">Designation:</label>
+
+                    <select class="form-control" id="sel1" name="designation" [(ngModel)]="user.designation" #name="ngModel" aria-placeholder="select anyone">
+
+                      <option>engineer</option>
+
+                      <option>doctor</option>
+
+                      <option>teacher</option>
+
+                      <option>artist</option>
+
+                      <option>none</option>
+
+                    </select>
+
+             </div>
+
+             <div class="form-group">
+
+                    <i class="fa fa-pencil-square" style="font-size:24px"></i> <label>Remark</label>
+
+                    <input type="text"  class="form-control" name="remarks" [(ngModel)]="user.remarks" #name="ngModel" required placeholder="Enter your remarks" required minlength="3">
+
+                    <small [hidden]="mail.valid || (mail.pristine && !f.submitted)" class="text-danger">
+
+                        Remarks are used for upgradation. Please help us in providing
+
+                    </small>
+
+             </div>
+
+ 
+
+             <button type="button" class="btn btn-success">Submit</button>
+
+             <br><br>
+
+             Registration Details:
+
+             {{f.value|json}}
+
+        </form>
+
+</div>
+
+ 
+
+ 
+
+ 
+
+import { Component, OnInit } from '@angular/core';
+
+import { User } from './user.interface';
+
+ 
+
+@Component({
+
+  selector: 'app-registerform',
+
+  templateUrl: './registerform.component.html',
+
+  styleUrls: ['./registerform.component.css']
+
+})
+
+export class RegisterformComponent implements OnInit {
+
+ 
+
+  constructor() { }
+
+  public user:User; //our model
+
+ 
+
+  ngOnInit() { // we will initialize our form here
+
+    this.user={
+
+      name:"",
+
+      email:"",
+
+      gender:"",
+
+      designation:"",
+
+      remarks:""
+
+    };
+
+  }
+
+  save(model:User,isValid:boolean){
+
+    //check if model is valid
+
+    //if valid call API to save the customer
+
+    console.log(model,isValid);
+
+ 
+
+  }
+
+ 
+
+}
+
+ 
+
+ 
+
+ 
+
+export interface User{
+
+    name:String;
+
+    gender:string;
+
+    email:String;
+
+    designation:String;
+
+    remarks:String;
+
+}

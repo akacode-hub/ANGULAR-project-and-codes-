@@ -1,0 +1,230 @@
+Crypto services ts file
+
+ 
+
+First generate crypto services using ng g service crypto to give you two files
+
+ 
+
+import { Injectable } from '@angular/core';
+
+ 
+
+@Injectable({
+
+  providedIn: 'root'
+
+})
+
+export class CryptoService {
+
+   coins=[
+
+     {id :1,name:'BTC'},
+
+     {id: 2,name:'XRP'},
+
+     {id:3,name:'ABC'}
+
+   ];
+
+  constructor() { }
+
+  getMyItems()
+
+  {
+
+    return this.coins;
+
+  }
+
+}
+
+ 
+
+ 
+
+App module ts
+
+import { BrowserModule } from '@angular/platform-browser';
+
+import { NgModule } from '@angular/core';
+
+import {FormsModule} from "@angular/forms";
+
+import { AppComponent } from './app.component';
+
+import { AboutComponent } from './about/about.component';
+
+import { ContractComponent } from './contract/contract.component';
+
+import { MyformComponent } from './myform/myform.component';
+
+import { RegisterformComponent } from './registerform/registerform.component';
+
+import { ReactiveFormsModuleComponent } from './reactive-forms-module/reactive-forms-module.component';
+
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { AngularFontAwesomeModule} from 'angular-font-awesome';
+
+import { AppchildComponent } from './appchild/appchild.component';
+
+import { ParentComponent } from './parent/parent.component';
+
+import { ChildComponent } from './child/child.component';
+
+import { CryptoService } from './crypto.service';
+
+ 
+
+@NgModule({
+
+  declarations: [
+
+    AppComponent,
+
+    AboutComponent,
+
+    ContractComponent,
+
+    MyformComponent,
+
+    RegisterformComponent,
+
+    ReactiveFormsModuleComponent,
+
+    AppchildComponent,
+
+    ParentComponent,
+
+    ChildComponent
+
+  ],
+
+  imports: [
+
+    BrowserModule,
+
+    FormsModule,
+
+    ReactiveFormsModule,
+
+    AngularFontAwesomeModule
+
+ 
+
+  ],
+
+  providers: [CryptoService],
+
+  bootstrap: [AppComponent],
+
+})
+
+export class AppModule { }
+
+ 
+
+ 
+
+app component ts
+
+import { Component } from '@angular/core';
+
+import{AppchildComponent} from './appchild/appchild.component';
+
+import { CryptoService } from './crypto.service';
+
+ 
+
+@Component({
+
+  selector: 'app1-root',
+
+  templateUrl: './app.component.html',
+
+  styleUrls: ['./app.component.css']
+
+ 
+
+})
+
+export class AppComponent{
+
+// message:string="I am Parent";
+
+// childmessage:string="i am passed from parent to child component"
+
+//title='outputinterect';
+
+coins=[];
+
+constructor(private cryptoservice:CryptoService)
+
+{
+
+   this.coins=cryptoservice.getMyItems()
+
+}
+
+}
+
+ 
+
+ 
+
+
+
+
+
+App component html
+
+ 
+
+<!--<app-contract></app-contract>-->
+
+<!--<app-myform></app-myform>-->
+
+<!--<app-registerform></app-registerform>-->
+
+<!--<app-reactive-forms-module></app-reactive-forms-module>-->
+
+ 
+
+<!--<app-parent></app-parent>
+
+<app-child></app-child>-->
+
+<table>
+
+    <tr>
+
+        <th>ID</th>
+
+        <th>Name</th>
+
+    </tr>
+
+    <tr *ngFor="let coin of coins">
+
+        <td>{{coin.id}}</td>
+
+        <td>{{coin.name}}</td>
+
+    </tr>
+
+</table>
+
+
+
+
+     
+
+   
+
+ 
+
+  
+
+ 

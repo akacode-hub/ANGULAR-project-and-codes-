@@ -1,0 +1,70 @@
+Reactive Form: User Registration page (using bootstarp, validation, and awesomefonts)
+
+Create a new component
+
+****user-react.component.ts****
+
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '../../../node_modules/@angular/forms';
+
+@Component({
+  selector: 'app-user-react',
+  templateUrl: './user-react.component.html',
+  styleUrls: ['./user-react.component.css']
+})
+export class UserReactComponent implements OnInit {
+ angForm: FormGroup;
+ constructor(private fb:FormBuilder){
+   this.createForm();
+ }
+createForm()
+{
+  this.angForm=this.fb.group({
+    name:["",Validators.required],
+    mail:["", [Validators.required, Validators.email]],
+    address:["",Validators.required]
+  });
+}
+  
+
+  ngOnInit() {
+  }
+
+}
+
+
+****user-react.component.html****
+
+<div class="container">
+    <br>
+    <h2>User Profile</h2>
+    <br>
+    <form [formGroup]="angForm" novalidate>
+        <div class="form-group">
+            <label class="fa fa-user-circle">  Name:</label>
+            <input class="form-control" formControlName="name" type="text">
+        </div>
+        <div *ngIf="angForm.controls['name'].invalid&&(angForm.controls['name'].dirty||angForm.controls['name'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="angForm.controls['name'].errors.required">Name is Required.</div>
+        </div>
+        <div class="form-group">
+            <label class="fa fa-envelope">  Email:</label>
+            <input class="form-control" formControlName="mail" type="text">
+        </div>
+        <div *ngIf="angForm.controls['mail'].invalid&&(angForm.controls['mail'].dirty||angForm.controls['mail'].touched)"
+        class="alert alert-danger">
+    <div *ngIf="angForm.controls['mail'].errors.required">Email is Required</div>
+    </div>
+        <div class="form-group">
+            <label class="fa fa-map-pin">  Address:</label>
+            <input class="form-control" formControlName="address" type="text">
+        </div>
+        <div *ngIf="angForm.controls['address'].invalid&&(angForm.controls['address'].dirty||angForm.controls['address'].touched)"
+        class="alert alert-danger">
+    <div *ngIf="angForm.controls['address'].errors.required">Address is Required</div>
+    </div>
+    <button type="submit"
+    [disabled]="angForm.pristine||angForm.invalid" class="btn btn-success">Save</button>
+    </form>
+</div>
